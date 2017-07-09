@@ -474,6 +474,20 @@ this.TrezorConnect = (function () {
         }
 
         /**
+         *
+         */
+        this.setCoinName = function (name, callback, requiredFirmware) {
+            try {
+                manager.sendWithChannel(_fwStrFix({
+                    type: 'setcoinname',
+                    coin_name: name
+                }, requiredFirmware), callback);
+            } catch(e) {
+                callback({success: false, error: e});
+            }
+        }
+
+        /**
          * Display ethereum address on device
          *
          * @param {array} address
